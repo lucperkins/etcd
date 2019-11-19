@@ -5,10 +5,14 @@ Previous change logs can be found at [CHANGELOG-3.1](https://github.com/etcd-io/
 
 The minimum recommended etcd versions to run in **production** are 3.1.11+, 3.2.26+, and 3.3.11+.
 
+<hr>
+
+## [v3.2.29](https://github.com/etcd-io/etcd/releases/tag/v3.2.29) (2019-TBD)
+
 
 <hr>
 
-## [v3.2.28](https://github.com/etcd-io/etcd/releases/tag/v3.2.28) (2019-TBD)
+## [v3.2.28](https://github.com/etcd-io/etcd/releases/tag/v3.2.28) (2019-11-10)
 
 ### Improved
 
@@ -22,6 +26,11 @@ Note that any `etcd_debugging_*` metrics are experimental and subject to change.
 
 - Add [`etcd_cluster_version`](https://github.com/etcd-io/etcd/pull/11271) Prometheus metric.
 
+### etcdserver
+
+- Fix [`wait purge file loop during shutdown`](https://github.com/etcd-io/etcd/pull/11308).
+  - Previously, during shutdown etcd could accidentally remove needed wal files, resulting in catastrophic error `etcdserver: open wal error: wal: file not found.` during startup.
+  - Now, etcd makes sure the purge file loop exits before server signals stop of the raft node.
 
 <hr>
 
